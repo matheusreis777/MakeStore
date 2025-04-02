@@ -1,10 +1,17 @@
-﻿using MakeStore.Infrastructure;
+﻿using MakeStore.Application.Interfaces;
+using MakeStore.Application.Services;
+using MakeStore.Domain.Interfaces;
+using MakeStore.Infrastructure;
+using MakeStore.Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
+
+builder.Services.AddScoped<IUsuarioService, UsuarioService>();
+builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
 
 builder.Services.AddDbContext<MakeStoreDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
