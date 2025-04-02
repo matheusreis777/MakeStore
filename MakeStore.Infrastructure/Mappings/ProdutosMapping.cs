@@ -24,7 +24,7 @@ namespace MakeStore.Infrastructure.Mappings
                 .HasMaxLength(200);
 
             builder.Property(p => p.price)
-                .HasColumnType("decimal(18,2)");
+                .HasMaxLength(10);
 
             builder.Property(p => p.price_sign)
                 .HasMaxLength(10);
@@ -69,7 +69,7 @@ namespace MakeStore.Infrastructure.Mappings
 
             builder.Ignore(p => p.tag_list);
 
-            builder.HasMany(p => p.cores)
+            builder.HasMany(p => p.product_colors)
                 .WithOne()
                 .HasForeignKey(c => c.produtoId)
                 .OnDelete(DeleteBehavior.Cascade); 

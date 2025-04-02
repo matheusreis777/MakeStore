@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MakeStore.Infrastructure.Migrations
 {
     [DbContext(typeof(MakeStoreDbContext))]
-    [Migration("20250402003131_add-estrutura-login")]
-    partial class addestruturalogin
+    [Migration("20250402173610_update-name-colum-produtos")]
+    partial class updatenamecolumprodutos
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -99,8 +99,10 @@ namespace MakeStore.Infrastructure.Migrations
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)");
 
-                    b.Property<decimal>("price")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<string>("price")
+                        .IsRequired()
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
 
                     b.Property<string>("price_sign")
                         .IsRequired()

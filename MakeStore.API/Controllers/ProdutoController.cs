@@ -1,5 +1,7 @@
 ﻿using MakeStore.Application.Interfaces;
 using MakeStore.Domain.Entities;
+using MakeStore.Domain.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -7,19 +9,21 @@ using System.Threading.Tasks;
 namespace MakeStore.WebAPI.Controllers;
 
 [ApiController]
-[Route("api/produtos")]
+[Route("api/[controller]")]
+[Authorize]
 public class ProdutoController : ControllerBase
 {
-    private readonly IRepository<Produto> _repository;
+    private readonly IProdutoRepository _produtoRepository;
 
-    public ProdutoController(IRepository<Produto> repository)
+    public ProdutoController(IProdutoRepository produtoRepository)
     {
-        _repository = repository;
+        _produtoRepository = produtoRepository;
     }
 
-    [HttpGet]
-    public async Task<ActionResult<IEnumerable<Produto>>> GetProdutos()
+    [HttpGet()]
+    public async Task<ActionResult<List<Produto>>> GetProducts()
     {
-        return Ok(await _repository.GetAllAsync());
+        var products = await _produtoRepository.ObterProdutosAsync();
+        return Ok(products);
     }
 }
