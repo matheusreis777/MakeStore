@@ -27,6 +27,17 @@
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
+    },
+    "Container (Dockerfile)": {
+      "commandName": "Docker",
+      "launchBrowser": true,
+      "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}/swagger",
+      "environmentVariables": {
+        "ASPNETCORE_HTTPS_PORTS": "8081",
+        "ASPNETCORE_HTTP_PORTS": "8080"
+      },
+      "publishAllPorts": true,
+      "useSSL": true
     }
   },
   "$schema": "http://json.schemastore.org/launchsettings.json",
@@ -37,5 +48,14 @@
       "applicationUrl": "http://localhost:16451",
       "sslPort": 44339
     }
+  },
+  "makestore-api": {
+    "commandName": "Project",
+    "launchBrowser": true,
+    "applicationUrl": "http://localhost:8080",
+    "environmentVariables": {
+      "DOTNET_ENVIRONMENT": "Development"
+    },
+    "dockerComposeLaunchServiceName": "makestore-api"
   }
 }

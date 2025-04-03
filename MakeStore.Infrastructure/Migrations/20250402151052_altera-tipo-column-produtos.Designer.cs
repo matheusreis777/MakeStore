@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MakeStore.Infrastructure.Migrations
 {
     [DbContext(typeof(MakeStoreDbContext))]
-    [Migration("20250402003131_add-estrutura-login")]
-    partial class addestruturalogin
+    [Migration("20250402151052_altera-tipo-column-produtos")]
+    partial class alteratipocolumnprodutos
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -99,8 +99,10 @@ namespace MakeStore.Infrastructure.Migrations
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)");
 
-                    b.Property<decimal>("price")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<string>("price")
+                        .IsRequired()
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
 
                     b.Property<string>("price_sign")
                         .IsRequired()
@@ -169,7 +171,7 @@ namespace MakeStore.Infrastructure.Migrations
             modelBuilder.Entity("MakeStore.Domain.Entities.CoresProdutos", b =>
                 {
                     b.HasOne("MakeStore.Domain.Entities.Produto", null)
-                        .WithMany("product_colors")
+                        .WithMany("cores")
                         .HasForeignKey("produtoId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -177,7 +179,7 @@ namespace MakeStore.Infrastructure.Migrations
 
             modelBuilder.Entity("MakeStore.Domain.Entities.Produto", b =>
                 {
-                    b.Navigation("product_colors");
+                    b.Navigation("cores");
                 });
 #pragma warning restore 612, 618
         }

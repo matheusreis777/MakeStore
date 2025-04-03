@@ -96,8 +96,10 @@ namespace MakeStore.Infrastructure.Migrations
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)");
 
-                    b.Property<decimal>("price")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<string>("price")
+                        .IsRequired()
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
 
                     b.Property<string>("price_sign")
                         .IsRequired()
@@ -166,7 +168,7 @@ namespace MakeStore.Infrastructure.Migrations
             modelBuilder.Entity("MakeStore.Domain.Entities.CoresProdutos", b =>
                 {
                     b.HasOne("MakeStore.Domain.Entities.Produto", null)
-                        .WithMany("cores")
+                        .WithMany("product_colors")
                         .HasForeignKey("produtoId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -174,7 +176,7 @@ namespace MakeStore.Infrastructure.Migrations
 
             modelBuilder.Entity("MakeStore.Domain.Entities.Produto", b =>
                 {
-                    b.Navigation("cores");
+                    b.Navigation("product_colors");
                 });
 #pragma warning restore 612, 618
         }

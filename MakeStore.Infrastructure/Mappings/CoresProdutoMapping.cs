@@ -26,7 +26,7 @@ public class CoresProdutosMap : IEntityTypeConfiguration<CoresProdutos>
             .HasMaxLength(50);
 
         builder.HasOne<Produto>()
-            .WithMany(p => p.cores)
+            .WithMany(p => p.product_colors)
             .HasForeignKey(c => c.produtoId)
             .OnDelete(DeleteBehavior.Cascade);
     }

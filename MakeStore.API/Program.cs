@@ -1,7 +1,10 @@
-﻿using MakeStore.Application.Interfaces;
+﻿using MakeStore.Application.DTOs;
+using MakeStore.Application.Interfaces;
 using MakeStore.Application.Services;
+using MakeStore.Domain.Entities;
 using MakeStore.Domain.Interfaces;
 using MakeStore.Infrastructure;
+using MakeStore.Infrastructure.Mappings;
 using MakeStore.Infrastructure.Repositories;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
@@ -19,6 +22,15 @@ builder.Services.AddScoped<IUsuarioService, UsuarioService>();
 builder.Services.AddScoped<AuthService>();
 builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
 builder.Services.AddSingleton<IConfiguration>(configuration);
+builder.Services.AddScoped<IProdutoRepository, ProdutoRepository>();
+
+
+builder.Services.AddHttpClient<Produto>();
+builder.Services.AddHttpClient<CoresProdutos>();
+
+builder.Services.AddAutoMapper(typeof(MappingProfile));
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
 
 builder.Services.AddDbContext<MakeStoreDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
@@ -44,6 +56,32 @@ builder.Services.AddSwaggerGen(c =>
     {
         Title = "MakeStore API",
         Version = "v1"
+    });
+
+    // Configuração da autenticação JWT no Swagger
+    c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+    {
+        Name = "Authorization",
+        Type = SecuritySchemeType.Http,
+        Scheme = "Bearer",
+        BearerFormat = "JWT",
+        In = ParameterLocation.Header,
+        Description = "Insira seu token JWT no campo abaixo. Exemplo: Bearer {seu_token}"
+    });
+
+    c.AddSecurityRequirement(new OpenApiSecurityRequirement
+    {
+        {
+            new OpenApiSecurityScheme
+            {
+                Reference = new OpenApiReference
+                {
+                    Type = ReferenceType.SecurityScheme,
+                    Id = "Bearer"
+                }
+            },
+            new List<string>()
+        }
     });
 });
 
