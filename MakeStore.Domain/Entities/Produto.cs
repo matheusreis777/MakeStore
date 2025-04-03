@@ -22,6 +22,7 @@ public class Produto
     public DateTime updated_at { get; set; }
     public string product_api_url { get; set; }
     public string api_featured_image { get; set; }
+    public int quantidade { get; set; } = 1; 
 
     public Guid UsuarioId { get; set; }
     public Usuario Usuario { get; set; }

@@ -15,7 +15,7 @@ public class CoresProdutosMap : IEntityTypeConfiguration<CoresProdutos>
         builder.Property(c => c.id)
             .ValueGeneratedOnAdd();
 
-        builder.Property(c => c.carrinhoId)
+        builder.Property(c => c.prodtuoId)
             .IsRequired();
 
         builder.Property(c => c.hex_value)
@@ -27,7 +27,7 @@ public class CoresProdutosMap : IEntityTypeConfiguration<CoresProdutos>
 
         builder.HasOne<Produto>()
             .WithMany(p => p.product_colors)
-            .HasForeignKey(c => c.carrinhoId)
+            .HasForeignKey(c => c.prodtuoId)
             .OnDelete(DeleteBehavior.Cascade);
     }
 }

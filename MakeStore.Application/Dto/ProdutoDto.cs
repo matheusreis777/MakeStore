@@ -20,6 +20,7 @@ namespace MakeStore.Application.DTOs
         public List<string> tag_list { get; set; }
         public DateTime created_at { get; set; }
         public DateTime updated_at { get; set; }
+        public int quantidade { get; set; }
         public string product_api_url { get; set; }
         public string api_featured_image { get; set; }
         public string email { get; set; }

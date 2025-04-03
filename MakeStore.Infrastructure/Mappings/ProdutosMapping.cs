@@ -9,7 +9,7 @@ namespace MakeStore.Infrastructure.Mappings
     {
         public void Configure(EntityTypeBuilder<Produto> builder)
         {
-            builder.ToTable("Carrinho");
+            builder.ToTable("Produto");
 
             builder.HasKey(p => p.id);
 
@@ -77,7 +77,7 @@ namespace MakeStore.Infrastructure.Mappings
 
             builder.HasMany(p => p.product_colors)
                 .WithOne()
-                .HasForeignKey(c => c.carrinhoId)
+                .HasForeignKey(c => c.prodtuoId)
                 .OnDelete(DeleteBehavior.Cascade);
         }
     }
