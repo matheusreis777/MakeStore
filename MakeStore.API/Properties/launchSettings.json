@@ -48,5 +48,14 @@
       "applicationUrl": "http://localhost:16451",
       "sslPort": 44339
     }
+  },
+  "makestore-api": {
+    "commandName": "Project",
+    "launchBrowser": true,
+    "applicationUrl": "http://localhost:8080",
+    "environmentVariables": {
+      "DOTNET_ENVIRONMENT": "Development"
+    },
+    "dockerComposeLaunchServiceName": "makestore-api"
   }
 }
