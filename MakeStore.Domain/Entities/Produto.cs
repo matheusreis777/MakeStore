@@ -23,6 +23,8 @@ public class Produto
     public string product_api_url { get; set; }
     public string api_featured_image { get; set; }
 
+    public Guid UsuarioId { get; set; }
+    public Usuario Usuario { get; set; }
     public List<CoresProdutos> product_colors { get; set; }
 
     public Produto()

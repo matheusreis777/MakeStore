@@ -1,4 +1,5 @@
-﻿using MakeStore.Application.Interfaces;
+﻿using MakeStore.Application.DTOs;
+using MakeStore.Application.Interfaces;
 using MakeStore.Domain.Entities;
 using MakeStore.Domain.Interfaces;
 using System;
@@ -38,6 +39,17 @@ namespace MakeStore.Application.Services
                 var hashedBytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(senha));
                 return BitConverter.ToString(hashedBytes).Replace("-", "").ToLower();
             }
+        }
+
+        public async Task<UsuarioDto> ObterUsuarioPorEmailAsync(string email)
+        {
+            var usuario = await _usuarioRepository.ObterPorEmailAsync(email);
+            if (usuario == null) return null;
+            return new UsuarioDto
+            {
+                Nome = usuario.Nome,
+                Email = usuario.Email
+            };
         }
 
         public async Task<bool> ValidarLoginAsync(string email, string senha)

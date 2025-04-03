@@ -12,5 +12,7 @@ namespace MakeStore.Domain.Interfaces
     {
         Task<List<Produto>> ObterProdutosAsync();
         Task SalvarAsync(Produto produto);
+        Task<List<Produto>> ObterCarrinhoAsync(Guid usuarioId);
+        Task<bool> RemoverItemCarrinho(int id);
     }
 }

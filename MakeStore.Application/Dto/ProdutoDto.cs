@@ -4,6 +4,7 @@ namespace MakeStore.Application.DTOs
 {
     public class ProdutoDto
     {
+        public int id { get; set; }
         public string brand { get; set; }
         public string name { get; set; }
         public string price { get; set; }
@@ -21,7 +22,10 @@ namespace MakeStore.Application.DTOs
         public DateTime updated_at { get; set; }
         public string product_api_url { get; set; }
         public string api_featured_image { get; set; }
+        public string email { get; set; }
 
+        public Guid UsuarioId { get; set; }
+        public UsuarioDto Usuario { get; set; }
         public List<CoresProdutosDto> product_colors { get; set; }
     }
 }

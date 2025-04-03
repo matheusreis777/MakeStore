@@ -69,5 +69,27 @@ namespace MakeStore.Infrastructure.Repositories
             await _context.SaveChangesAsync();
         }
 
+        public async Task<List<Produto>> ObterCarrinhoAsync(Guid usuarioId)
+        {
+            return await _context.Produtos
+                .Include(p => p.product_colors)
+                .Where(p => p.UsuarioId == usuarioId)
+                .ToListAsync();
+        }
+
+        public async Task<bool> RemoverItemCarrinho(int id)
+        {
+            var produto = await _context.Produtos.FindAsync(id);
+
+            if (produto == null)
+            {
+                return false;
+            }
+
+            _context.Produtos.Remove(produto);
+            await _context.SaveChangesAsync();
+
+            return true;
+        }
     }
 }

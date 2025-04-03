@@ -1,6 +1,7 @@
 ﻿using MakeStore.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using System.Reflection.Emit;
 
 namespace MakeStore.Infrastructure.Mappings
 {
@@ -45,7 +46,7 @@ namespace MakeStore.Infrastructure.Mappings
                 .HasMaxLength(1000);
 
             builder.Property(p => p.rating)
-                .HasColumnType("decimal(5,2)"); 
+                .HasColumnType("decimal(5,2)");
 
             builder.Property(p => p.category)
                 .HasMaxLength(100);
@@ -69,10 +70,15 @@ namespace MakeStore.Infrastructure.Mappings
 
             builder.Ignore(p => p.tag_list);
 
+            builder.HasOne(p => p.Usuario)
+                .WithMany(u => u.Produtos)
+                .HasForeignKey(p => p.UsuarioId)
+                .OnDelete(DeleteBehavior.Restrict);
+
             builder.HasMany(p => p.product_colors)
                 .WithOne()
                 .HasForeignKey(c => c.produtoId)
-                .OnDelete(DeleteBehavior.Cascade); 
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using MakeStore.Application.DTOs;
+﻿using AutoMapper;
+using MakeStore.Application.DTOs;
 using MakeStore.Application.Interfaces;
 using MakeStore.Application.Services;
 using MakeStore.Domain.Entities;
@@ -28,7 +29,22 @@ builder.Services.AddScoped<IProdutoRepository, ProdutoRepository>();
 builder.Services.AddHttpClient<Produto>();
 builder.Services.AddHttpClient<CoresProdutos>();
 
-builder.Services.AddAutoMapper(typeof(MappingProfile));
+var config = new MapperConfiguration(cfg =>
+{
+    cfg.AddProfile<MappingProfile>();
+});
+
+try
+{
+    config.AssertConfigurationIsValid();
+    Console.WriteLine("✅ Configuração do AutoMapper válida!");
+}
+catch (Exception ex)
+{
+    Console.WriteLine($"❌ Erro no AutoMapper: {ex.Message}");
+}
+
+
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 

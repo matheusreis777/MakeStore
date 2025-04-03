@@ -52,5 +52,20 @@ namespace MakeStore.Api.Controllers
             }
             return Unauthorized(new { message = "E-mail ou senha inválidos." });
         }
+
+        [HttpGet("ObterUsuario/{email}")]
+        public async Task<IActionResult> ObterUsuario(string email)
+        {
+            if (string.IsNullOrEmpty(email))
+            {
+                return BadRequest("Email inválido");
+            }
+            var usuario = await _usuarioService.ObterUsuarioPorEmailAsync(email);
+            if (usuario == null)
+            {
+                return NotFound("Usuário não encontrado");
+            }
+            return Ok(usuario);
+        }
     }
 }
