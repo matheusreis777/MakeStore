@@ -9,7 +9,7 @@ namespace MakeStore.Infrastructure.Mappings
     {
         public void Configure(EntityTypeBuilder<Produto> builder)
         {
-            builder.ToTable("Produto");
+            builder.ToTable("Produtos");
 
             builder.HasKey(p => p.id);
 
