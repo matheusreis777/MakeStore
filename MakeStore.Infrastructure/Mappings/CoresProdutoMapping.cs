@@ -8,14 +8,14 @@ public class CoresProdutosMap : IEntityTypeConfiguration<CoresProdutos>
 {
     public void Configure(EntityTypeBuilder<CoresProdutos> builder)
     {
-        builder.ToTable("CoresProdutos");
+        builder.ToTable("CarrinhoCoresProdutos");
 
         builder.HasKey(c => c.id);
 
         builder.Property(c => c.id)
             .ValueGeneratedOnAdd();
 
-        builder.Property(c => c.produtoId)
+        builder.Property(c => c.carrinhoId)
             .IsRequired();
 
         builder.Property(c => c.hex_value)
@@ -27,7 +27,7 @@ public class CoresProdutosMap : IEntityTypeConfiguration<CoresProdutos>
 
         builder.HasOne<Produto>()
             .WithMany(p => p.product_colors)
-            .HasForeignKey(c => c.produtoId)
+            .HasForeignKey(c => c.carrinhoId)
             .OnDelete(DeleteBehavior.Cascade);
     }
 }

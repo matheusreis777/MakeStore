@@ -4,6 +4,7 @@ using MakeStore.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MakeStore.Infrastructure.Migrations
 {
     [DbContext(typeof(MakeStoreDbContext))]
-    partial class MakeStoreDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250403231115_altera_nome_tabela_produto_para_carrinho")]
+    partial class altera_nome_tabela_produto_para_carrinho
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -30,9 +33,6 @@ namespace MakeStore.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"));
 
-                    b.Property<int>("carrinhoId")
-                        .HasColumnType("int");
-
                     b.Property<string>("colour_name")
                         .IsRequired()
                         .HasMaxLength(50)
@@ -43,11 +43,14 @@ namespace MakeStore.Infrastructure.Migrations
                         .HasMaxLength(7)
                         .HasColumnType("nvarchar(7)");
 
+                    b.Property<int>("produtoId")
+                        .HasColumnType("int");
+
                     b.HasKey("id");
 
-                    b.HasIndex("carrinhoId");
+                    b.HasIndex("produtoId");
 
-                    b.ToTable("CarrinhoCoresProdutos", (string)null);
+                    b.ToTable("CoresProdutos", (string)null);
                 });
 
             modelBuilder.Entity("MakeStore.Domain.Entities.Produto", b =>
@@ -174,7 +177,7 @@ namespace MakeStore.Infrastructure.Migrations
                 {
                     b.HasOne("MakeStore.Domain.Entities.Produto", null)
                         .WithMany("product_colors")
-                        .HasForeignKey("carrinhoId")
+                        .HasForeignKey("produtoId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
