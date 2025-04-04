@@ -42,8 +42,7 @@ namespace MakeStore.Infrastructure.Mappings
             builder.Property(p => p.website_link)
                 .HasMaxLength(500);
 
-            builder.Property(p => p.description)
-                .HasMaxLength(1000);
+            builder.Property(p => p.description);
 
             builder.Property(p => p.rating)
                 .HasColumnType("decimal(5,2)");
@@ -69,6 +68,8 @@ namespace MakeStore.Infrastructure.Mappings
                 .HasMaxLength(500);
 
             builder.Ignore(p => p.tag_list);
+
+            builder.Property(p => p.status);
 
             builder.HasOne(p => p.Usuario)
                 .WithMany(u => u.Produtos)

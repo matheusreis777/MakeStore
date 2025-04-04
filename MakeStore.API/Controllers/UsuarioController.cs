@@ -8,6 +8,7 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
+using Microsoft.AspNetCore.Authorization;
 
 namespace MakeStore.Api.Controllers
 {
@@ -54,6 +55,7 @@ namespace MakeStore.Api.Controllers
         }
 
         [HttpGet("ObterUsuario/{email}")]
+        [Authorize]
         public async Task<IActionResult> ObterUsuario(string email)
         {
             if (string.IsNullOrEmpty(email))

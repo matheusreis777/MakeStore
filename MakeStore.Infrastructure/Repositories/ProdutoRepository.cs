@@ -73,7 +73,7 @@ namespace MakeStore.Infrastructure.Repositories
         {
             return await _context.Produtos
                 .Include(p => p.product_colors)
-                .Where(p => p.UsuarioId == usuarioId)
+                .Where(p => p.UsuarioId == usuarioId && p.status == "Pendente")
                 .ToListAsync();
         }
 
@@ -91,5 +91,26 @@ namespace MakeStore.Infrastructure.Repositories
 
             return true;
         }
+
+        public async Task<bool> AlterarStatusCarrinho(List<int> ids, string status)
+        {
+            var produtos = await _context.Produtos.Where(p => ids.Contains(p.id)).ToListAsync();
+
+            if (!produtos.Any())
+            {
+                return false;
+            }
+
+            foreach (var produto in produtos)
+            {
+                produto.status = status;
+            }
+
+            _context.Produtos.UpdateRange(produtos);
+            await _context.SaveChangesAsync();
+
+            return true;
+        }
+
     }
 }

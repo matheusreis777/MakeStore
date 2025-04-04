@@ -17,6 +17,9 @@ namespace MakeStore.Infrastructure.Mappings
         {
             CreateMap<Usuario, UsuarioDto>().ReverseMap();
 
+            CreateMap<Compra, CompraDto>().ReverseMap()
+                .ForMember(dest => dest.Produtos, opt => opt.MapFrom(src => src.Produtos));
+
             CreateMap<Produto, ProdutoDto>()
                 .ForMember(dest => dest.product_colors, opt => opt.MapFrom(src => src.product_colors))
                 .ForMember(dest => dest.Usuario, opt => opt.MapFrom(src => src.Usuario));
@@ -28,6 +31,9 @@ namespace MakeStore.Infrastructure.Mappings
             CreateMap<CoresProdutos, CoresProdutosDto>().ReverseMap();
             CreateMap<Produto, CarrinhoDto>().ReverseMap();
             CreateMap<ProdutoDto, CarrinhoDto>().ReverseMap();
+
+            CreateMap<Compra, CompraDto>().ReverseMap()
+                .ForMember(dest => dest.Produtos, opt => opt.MapFrom(src => src.Produtos));
         }
     }
 

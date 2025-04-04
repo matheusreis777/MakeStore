@@ -4,6 +4,7 @@ using MakeStore.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MakeStore.Infrastructure.Migrations
 {
     [DbContext(typeof(MakeStoreDbContext))]
-    partial class MakeStoreDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250404032050_altera_colunas_e_criar")]
+    partial class altera_colunas_e_criar
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -118,7 +121,8 @@ namespace MakeStore.Infrastructure.Migrations
 
                     b.Property<string>("description")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
 
                     b.Property<string>("image_link")
                         .IsRequired()
@@ -163,7 +167,9 @@ namespace MakeStore.Infrastructure.Migrations
 
                     b.Property<string>("status")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("nvarchar(max)")
+                        .HasDefaultValue("20");
 
                     b.Property<DateTime>("updated_at")
                         .HasColumnType("datetime");

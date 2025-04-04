@@ -24,6 +24,7 @@ builder.Services.AddScoped<AuthService>();
 builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
 builder.Services.AddSingleton<IConfiguration>(configuration);
 builder.Services.AddScoped<IProdutoRepository, ProdutoRepository>();
+builder.Services.AddScoped<ICompraRespository, CompraRepository>();
 
 
 builder.Services.AddHttpClient<Produto>();

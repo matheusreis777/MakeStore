@@ -26,10 +26,6 @@ namespace MakeStore.Infrastructure.Mappings
                 .HasMaxLength(50)
                 .IsRequired();
 
-            builder.Property(c => c.Status)
-                .HasMaxLength(10)
-                .IsRequired();
-
             builder.HasOne(c => c.Usuario) 
                 .WithMany(u => u.Compras)
                 .HasForeignKey(c => c.UsuarioId)

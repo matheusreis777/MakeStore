@@ -73,8 +73,8 @@ public class CarrinhoController : ControllerBase
                     description = productDto.description,
                     category = productDto.category,
                     usuarioId = productDto.UsuarioId,
-                    product_colors = productDto.product_colors[0],
-                    api_featured_image = productDto.api_featured_image,
+                    product_colors = productDto?.product_colors[0],
+                    api_featured_image = productDto?.api_featured_image,
                     quantidade = productDto.quantidade,
                     Usuario = productDto.Usuario,
                 };

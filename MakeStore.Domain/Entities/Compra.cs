@@ -12,10 +12,9 @@ namespace MakeStore.Domain.Entities
         public DateTime DataCompra { get; set; }
         public double ValorTotal { get; set; }
         public string FormaPagamento { get; set; }
-        public string Status { get; set; }
         public Guid UsuarioId { get; set; }
         public Usuario Usuario { get; set; }
-        public List<Produto> Produtos { get; set; }
+        public List<Produto> Produtos { get; set; } = new List<Produto>();
 
         public Compra()
         {

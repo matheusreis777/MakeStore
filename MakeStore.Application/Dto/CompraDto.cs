@@ -13,9 +13,8 @@ namespace MakeStore.Application.Dto
         public DateTime DataCompra { get; set; }
         public double ValorTotal { get; set; }
         public string FormaPagamento { get; set; }
-        public string Status { get; set; }
-        public Guid UsuarioId { get; set; }
-        public Usuario Usuario { get; set; }
-        public List<Produto> Produtos { get; set; }
+        public Guid? UsuarioId { get; set; }
+        public string? Email { get; set; }
+        public List<Produto>? Produtos { get; set; }
     }
 }

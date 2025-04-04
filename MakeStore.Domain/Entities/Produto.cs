@@ -23,6 +23,7 @@ public class Produto
     public string product_api_url { get; set; }
     public string api_featured_image { get; set; }
     public int quantidade { get; set; } = 1; 
+    public string status { get; set; } = "pendente";
 
     public Guid UsuarioId { get; set; }
     public Usuario Usuario { get; set; }
@@ -32,6 +33,11 @@ public class Produto
     {
         tag_list = new List<string>();
         product_colors = new List<CoresProdutos>();
+    }
+
+    public void AlterarStatus(string status)
+    {
+        status = status;
     }
 
 }
