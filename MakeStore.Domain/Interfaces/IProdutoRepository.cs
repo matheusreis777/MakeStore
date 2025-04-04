@@ -14,6 +14,6 @@ namespace MakeStore.Domain.Interfaces
         Task SalvarAsync(Produto produto);
         Task<List<Produto>> ObterCarrinhoAsync(Guid usuarioId);
         Task<bool> RemoverItemCarrinho(int id);
-        Task<bool> AlterarStatusCarrinho(List<int> id, string status);
+        Task<bool> AlterarStatusCarrinho(List<int> id, string statust);
     }
 }
