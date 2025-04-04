@@ -18,5 +18,15 @@
         {
             return BCrypt.Net.BCrypt.Verify(senhaOther, SenhaHash);
         }
+
+        public Usuario()
+        {
+            Id = Guid.NewGuid();
+            Nome = "Matheus Testando";
+            Email = "testando@gmail.com";
+            Produtos = new List<Produto>();
+            Compras = new List<Compra>();
+            DefinirSenha("Teste@123");
+        }
     }
 }
