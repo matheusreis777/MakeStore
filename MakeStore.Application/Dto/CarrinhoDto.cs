@@ -16,6 +16,7 @@ namespace MakeStore.Application.Dto
         public string? description { get; set; }
         public string? category { get; set; }
         public string? api_featured_image { get; set; }
+        public int quantidade { get; set; }
         public Guid usuarioId { get; set; }
 
         public UsuarioDto? Usuario { get; set; }

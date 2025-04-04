@@ -26,7 +26,7 @@ namespace MakeStore.Application.DTOs
         public string email { get; set; }
 
         public Guid UsuarioId { get; set; }
-        public UsuarioDto Usuario { get; set; }
+        public UsuarioDto? Usuario { get; set; }
         public List<CoresProdutosDto> product_colors { get; set; }
     }
 }

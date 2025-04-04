@@ -15,24 +15,17 @@ namespace MakeStore.WebAPI.Controllers;
 [ApiController]
 [Route("api/[controller]")]
 [Authorize]
-public class ProdutoController : ControllerBase
+public class CarrinhoController : ControllerBase
 {
     private readonly IProdutoRepository _produtoRepository;
     private readonly IMapper _mapper;
     private readonly IUsuarioRepository _usuarioRepository;
 
-    public ProdutoController(IProdutoRepository produtoRepository, IMapper mapper, IUsuarioRepository usuarioRepository)
+    public CarrinhoController(IProdutoRepository produtoRepository, IMapper mapper, IUsuarioRepository usuarioRepository)
     {
         _produtoRepository = produtoRepository;
         _mapper = mapper;
         _usuarioRepository = usuarioRepository;
-    }
-
-    [HttpGet()]
-    public async Task<ActionResult<List<Produto>>> GetProducts()
-    {
-        var products = await _produtoRepository.ObterProdutosAsync();
-        return Ok(products);
     }
 
     [HttpPost("SalvarCarrinho")]
@@ -82,6 +75,7 @@ public class ProdutoController : ControllerBase
                     usuarioId = productDto.UsuarioId,
                     product_colors = productDto.product_colors[0],
                     api_featured_image = productDto.api_featured_image,
+                    quantidade = productDto.quantidade,
                     Usuario = productDto.Usuario,
                 };
                 carrinho.Add(carrinhoItem);

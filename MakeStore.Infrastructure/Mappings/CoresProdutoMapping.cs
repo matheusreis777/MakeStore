@@ -8,7 +8,7 @@ public class CoresProdutosMap : IEntityTypeConfiguration<CoresProdutos>
 {
     public void Configure(EntityTypeBuilder<CoresProdutos> builder)
     {
-        builder.ToTable("CarrinhoCoresProdutos");
+        builder.ToTable("ProdutoCor");
 
         builder.HasKey(c => c.id);
 
